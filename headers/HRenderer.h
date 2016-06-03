@@ -1,11 +1,13 @@
-class RayRenderer {
+using namespace Eigen;
+
+class HRenderer {
 	int rendererWidth, 
 		rendererHeight;
 	SDL_Window *rendererWindow;
 	SDL_Renderer *rendererSDLRenderer;
 
 public:
-	RayRenderer(int width, int height) {
+	HRenderer(int width, int height) {
 		rendererWidth = width;
 		rendererHeight = height;
 	}
@@ -48,6 +50,34 @@ public:
 
 
 	void render() {
+		int worldX, worldY;
+
+		HGeometrySphere sphere(Vector3d(0, 0, 0), 150);
+		HRay sceneRay;
+
+		for(int i = 0; i < rendererWidth; i++) {
+			for(int j = 0; j < rendererHeight; j++) {
+				worldX = i - rendererWidth * 0.5;
+				worldY = j - rendererHeight * 0.5;
+
+				sceneRay.position(0) = worldX;
+				sceneRay.position(1) = worldY;
+				sceneRay.position(2) = -10;
+
+				sceneRay.direction(0) = 0;
+				sceneRay.direction(1) = 0;
+				sceneRay.direction(2) = 1.0;
+
+				float intersectionDistance = MAX_DISTANCE;
+
+				if( sphere.intersect(sceneRay, intersectionDistance) > 0 ) {
+					setPixel(i, j, 255, 255, 255);
+				} else {
+					setPixel(i, j, 0, 0, 0);
+				}
+			}
+		}
+
 		SDL_RenderPresent(rendererSDLRenderer);
 	}
 

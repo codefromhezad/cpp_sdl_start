@@ -1,22 +1,30 @@
 #include <iostream>
+
+/* CONSTS */
+const float FLT_EPSILON = 0.00001;
+const float MAX_DISTANCE = 9999999;
+
+/* LIBS */
 #include <SDL2/SDL.h>
+#include "lib/Eigen/Dense"
 
-#include "RayRenderer.h"
+/* HEADERS */
+#include "headers/HRay.h"
+#include "headers/HGeometry.h"
+#include "headers/HGeometrySphere.h"
+#include "headers/HRenderer.h"
 
-const int SCREEN_WIDTH  = 640;
-const int SCREEN_HEIGHT = 480;
+/* NAMESPACES*/
+using namespace Eigen;
 
 
+/* ENTRY POINT */
 int main(int, char**){
 	
-	RayRenderer renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
+	HRenderer renderer(640, 480);
 
 	if( ! renderer.init() ) {
 		return 1;
-	}
-
-	for(int i = 0; i < SCREEN_WIDTH; i++) {
-		renderer.setPixel(i, 40, 255, 0, 0);
 	}
 
 	renderer.render();
