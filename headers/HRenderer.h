@@ -62,7 +62,7 @@ public:
 
 				sceneRay.position(0) = worldX;
 				sceneRay.position(1) = worldY;
-				sceneRay.position(2) = -10;
+				sceneRay.position(2) = -400;
 
 				sceneRay.direction(0) = 0;
 				sceneRay.direction(1) = 0;
