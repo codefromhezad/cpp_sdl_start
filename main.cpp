@@ -9,10 +9,13 @@ const float MAX_DISTANCE = 9999999;
 #include "lib/Eigen/Dense"
 
 /* HEADERS */
+#include "headers/HColor.h"
 #include "headers/HRay.h"
+#include "headers/HMaterial.h"
 #include "headers/HGeometry.h"
 #include "headers/HGeometrySphere.h"
 #include "headers/HRenderer.h"
+#include "headers/HScene.h"
 
 /* NAMESPACES*/
 using namespace Eigen;
