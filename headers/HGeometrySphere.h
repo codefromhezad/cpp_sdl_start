@@ -5,10 +5,10 @@ public:
 	Vector3d center;
 	float radius;
 
-	HGeometrySphere(Vector3d defCenter, float defRadius) {
-		center = defCenter;
-		radius = defRadius;
-	}
+	HGeometrySphere(Vector3d mCenter, float mRadius) {
+        center = mCenter;
+        radius = mRadius;
+    };
 
     int intersect(HRay &ray, float &distance) {
 

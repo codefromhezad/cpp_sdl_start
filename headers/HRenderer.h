@@ -49,14 +49,14 @@ public:
 	}
 
 
-	void render() {
+	void render(HScene scene) {
 		int worldX, worldY;
 
-		HGeometrySphere sphere(Vector3d(0, 0, 0), 150);
 		HRay sceneRay;
 
 		for(int i = 0; i < rendererWidth; i++) {
 			for(int j = 0; j < rendererHeight; j++) {
+
 				worldX = i - rendererWidth * 0.5;
 				worldY = j - rendererHeight * 0.5;
 
@@ -68,13 +68,9 @@ public:
 				sceneRay.direction(1) = 0;
 				sceneRay.direction(2) = 1.0;
 
-				float intersectionDistance = MAX_DISTANCE;
+				HColor pixelColor = scene.castRay(sceneRay);
 
-				if( sphere.intersect(sceneRay, intersectionDistance) > 0 ) {
-					setPixel(i, j, 255, 255, 255);
-				} else {
-					setPixel(i, j, 0, 0, 0);
-				}
+				setPixel(i, j, pixelColor.r * 255, pixelColor.g * 255, pixelColor.b * 255);
 			}
 		}
 
